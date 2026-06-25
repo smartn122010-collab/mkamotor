@@ -1,10 +1,10 @@
 {
-  "projectId": "ds-document-store",
+  "projectId": "ultra-rarity-p8gvj",
   "appId": "1:856897537079:web:641c9299f92ff47961ebb2",
   "apiKey": "AIzaSyD3jnqi7KOo5UGX_ZvayHAuCyuYq-uQAio",
-  "authDomain": "DS-document-store.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-0968fe35-e34d-4b0d-9d79-53b667a556f2",
-  "storageBucket": "ds-document-store.firebasestorage.app",
+  "authDomain": "ultra-rarity-p8gvj.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-1f842e33-9275-43b0-bfe6-137cd1c8befc",
+  "storageBucket": "ultra-rarity-p8gvj.firebasestorage.app",
   "messagingSenderId": "856897537079",
   "measurementId": ""
 }
