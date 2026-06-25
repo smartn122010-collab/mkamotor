@@ -1,0 +1,6 @@
+{
+  "name": "MKA Motor",
+  "description": "Luxury online store, search catalog, and customer registration for MKA Motor Spare Parts. Features WhatsApp orders, dashboard statistics, and admin PIN security.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

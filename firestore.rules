@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Admin bootstrap check using the user's email or general admin email
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == "smartnp09812@gmail.com" || 
+        request.auth.token.email == "mkamotors16@outlook.com"
+      );
+    }
+
+    // Products collection: public read, admin write
+    match /products/{productId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Offers collection: public read, admin write
+    match /offers/{offerId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Users collection: users can read/write their own document, admins can read all
+    match /users/{userId} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == userId);
+      allow create, update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if isAdmin();
+    }
+
+    // Orders collection: admin read/write, user read/create own
+    match /orders/{orderId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.customerUid == request.auth.uid);
+      allow create: if isSignedIn() && request.resource.data.customerUid == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    // Stats document: public read, admin write
+    match /stats/dashboard {
+      allow read: if true;
+      allow write: if isAdmin() || !exists(/databases/$(database)/documents/stats/dashboard);
+    }
+
+    // Admin configuration document: public read (to check if PIN is set), write if admin or first time setup
+    match /admin/config {
+      allow read: if true;
+      allow write: if isAdmin() || !exists(/databases/$(database)/documents/admin/config);
+    }
+  }
+}

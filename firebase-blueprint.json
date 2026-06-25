@@ -1,0 +1,107 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Bike spare part products",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "image": { "type": "string" },
+        "price": { "type": "number" },
+        "rating": { "type": "number" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "stockStatus": { "type": "string", "enum": ["available", "unavailable"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "image", "price", "category", "stockStatus"]
+    },
+    "Offer": {
+      "title": "Offer",
+      "description": "Discount codes available for customers to use at the branch",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "description": { "type": "string" },
+        "discount": { "type": "number" },
+        "expiryDate": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["code", "description", "discount", "expiryDate"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details used before sending to WhatsApp",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "customerContact": { "type": "string" },
+        "customerAddress": { "type": "string" },
+        "customerAge": { "type": "number" },
+        "productDetails": { "type": "object" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["customerName", "customerContact", "customerAddress", "productDetails"]
+    },
+    "Stats": {
+      "title": "Stats",
+      "description": "Manual sales and stock stats for the admin dashboard",
+      "type": "object",
+      "properties": {
+        "totalStock": { "type": "number" },
+        "totalService": { "type": "number" },
+        "todaySale": { "type": "number" },
+        "monthSale": { "type": "number" },
+        "yearSale": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "AdminConfig": {
+      "title": "AdminConfig",
+      "description": "Secure settings such as PIN for admin panel",
+      "type": "object",
+      "properties": {
+        "pinHash": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile document containing custom avatar and display name",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles collection containing custom avatars"
+    },
+    "products/{productId}": {
+      "schema": "Product",
+      "description": "Spare parts products collection"
+    },
+    "offers/{offerId}": {
+      "schema": "Offer",
+      "description": "Discount offers collection"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer orders collection"
+    },
+    "stats/dashboard": {
+      "schema": "Stats",
+      "description": "Dashboard statistics"
+    },
+    "admin/config": {
+      "schema": "AdminConfig",
+      "description": "Admin configuration and security keys"
+    }
+  }
+}
