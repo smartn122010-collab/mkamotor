@@ -2,9 +2,9 @@
   "projectId": "ds-document-store",
   "appId": "1:856897537079:web:641c9299f92ff47961ebb2",
   "apiKey": "AIzaSyD3jnqi7KOo5UGX_ZvayHAuCyuYq-uQAio",
-  "authDomain": "DS document store.firebaseapp.com",
+  "authDomain": "DS-document-store.firebaseapp.com",
   "firestoreDatabaseId": "ai-studio-0968fe35-e34d-4b0d-9d79-53b667a556f2",
-  "storageBucket": "dsdocumentstore.firebaseapp.com",
+  "storageBucket": "ds-document-store.firebasestorage.app",
   "messagingSenderId": "856897537079",
   "measurementId": ""
 }
